@@ -1,5 +1,5 @@
 name: astrbot_plugin_rerank_lmstudio
 desc: Provide /v1/rerank interface for local deployed reranking model from LMStuido
-version: 0.1.0
+version: 0.1.1
 author: MKiyoaki
 repo: "MKiyoaki/astrbot-plugin-rerank-lmstuido"
