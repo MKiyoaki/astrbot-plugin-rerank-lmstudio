@@ -1,0 +1,13 @@
+{
+    "model_name": {
+        "description": "Reranker model name (HuggingFace ID or local path)",
+        "type": "string",
+        "default": "BAAI/bge-reranker-v2-m3",
+        "hint": "Recommended: BAAI/bge-reranker-v2-m3 for Chinese/English support"
+    },
+    "port": {
+        "description": "Local port for the /v1/rerank service",
+        "type": "int",
+        "default": 8001
+    }
+}
