@@ -23,10 +23,14 @@ def rerank(req: RerankRequest):
     pairs = [[req.query, doc] for doc in req.documents]
     scores = model.predict(pairs)
     results = [
-        {"index": i, "score": float(scores[i]), "document": req.documents[i]}
+        {
+            "index": i,
+            "relevance_score": float(scores[i]),  # changed from "score"
+            "document": req.documents[i]
+        }
         for i in range(len(req.documents))
     ]
-    results.sort(key=lambda x: x["score"], reverse=True)
+    results.sort(key=lambda x: x["relevance_score"], reverse=True)
     return {"results": results[:req.top_n]}
 
 
@@ -60,4 +64,3 @@ class RerankPlugin(Star):
     async def terminate(self):
         """Called when plugin is unloaded."""
         logger.info("[Rerank] Plugin unloaded, service stopped.")
-        
