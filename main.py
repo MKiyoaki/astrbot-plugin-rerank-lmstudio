@@ -62,5 +62,8 @@ class RerankPlugin(Star):
         logger.info(f"[Rerank] Service started on port {port}")
 
     async def terminate(self):
-        """Called when plugin is unloaded."""
-        logger.info("[Rerank] Plugin unloaded, service stopped.")
+        """Gracefully shut down the uvicorn server."""
+        logger.info("[Rerank] Shutting down service...")
+        self.server.should_exit = True
+        self.server_thread.join(timeout=5)
+        logger.info("[Rerank] Service stopped.")
